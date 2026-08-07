@@ -7,6 +7,6 @@
 | ชื่อ-นามสกุล | ศิลวัต อาซอง |
 | Section | SEC2 |
 | GitHub Username | sinrawat |
-| Repository | `engse203-student-labs-685432100707` |
+| Repository | `engse203-student-labs-68543210070-7` |
 | Mode | `migration` |
-| Pages Hub | https://sinrawat.github.io/engse203-student-labs-685432100707/ |
+| Pages Hub | https://sinrawat.github.io/engse203-student-labs-68543210070-7/ |
