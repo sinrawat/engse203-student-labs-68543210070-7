@@ -54,10 +54,15 @@ function DashboardPage() {
   const filteredRequests = requests.filter((request) => {
   const query = searchText.trim().toLowerCase();
 
-  return (
+  const matchesSearch =
     request.requestType.toLowerCase().includes(query) ||
-    request.location.toLowerCase().includes(query)
-  );
+    request.location.toLowerCase().includes(query);
+
+  const matchesStatus =
+    statusFilter === 'all' ||
+    request.status === statusFilter;
+
+  return matchesSearch && matchesStatus;
 });
 
   function handleRetry() {
