@@ -78,5 +78,21 @@
     "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-05/labs/week-05/source",
     "hasPublish": true,
     "sourceEntries": 12
+  },
+  {
+    "week": "week-06",
+    "title": "Express API Foundation",
+    "status": "ready",
+    "sourceOrigin": "migrated-repository",
+    "originalRepoUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7",
+    "originalCommit": "45726da",
+    "pullRequestUrl": "",
+    "submissionTag": "lab-06-submission-v1",
+    "testStatus": "pass",
+    "notes": "Express API สำหรับ Lab 06 และมี API test evidence",
+    "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-06/",
+    "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-06/labs/week-06/source",
+    "hasPublish": false,
+    "sourceEntries": 9
   }
 ]
