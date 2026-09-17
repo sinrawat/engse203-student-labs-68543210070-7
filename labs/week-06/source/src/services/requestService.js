@@ -77,8 +77,27 @@ export async function create(input) {
  * TODO W06-S4 (⭐ Challenge) · เปลี่ยนสถานะคำร้อง
  * - ไม่พบคืน null · พบแล้วเปลี่ยน status และคืนสำเนา
  */
-export function updateStatus(id, status) {
-  throw new Error('TODO W06-S4: updateStatus');
+export async function updateStatus(id, status) {
+  const validStatuses = ['pending', 'in-progress', 'completed'];
+
+  if (!validStatuses.includes(status)) {
+    return null;
+  }
+
+  const index = requests.findIndex((request) => request.id === id);
+
+  if (index === -1) {
+    return null;
+  }
+
+  requests[index] = {
+    ...requests[index],
+    status
+  };
+
+  await persist();
+
+  return structuredClone(requests[index]);
 }
 
 /**

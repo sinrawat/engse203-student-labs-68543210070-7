@@ -44,8 +44,27 @@ export async function createRequest(req, res) {
  * - status ที่รับได้: 'pending' | 'in-progress' | 'completed'
  * - status ไม่ถูกต้อง → 400 · ไม่พบคำร้อง → 404 · สำเร็จ → 200
  */
-export function updateRequestStatus(req, res) {
-  throw new Error('TODO W06-C4: updateRequestStatus');
+export async function updateRequestStatus(req, res) {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  const validStatuses = ['pending', 'in-progress', 'completed'];
+
+  if (!validStatuses.includes(status)) {
+    return res.status(400).json({
+      error: 'status ต้องเป็น pending, in-progress หรือ completed'
+    });
+  }
+
+  const updated = await service.updateStatus(id, status);
+
+  if (!updated) {
+    return res.status(404).json({
+      error: 'ไม่พบคำร้อง'
+    });
+  }
+
+  res.status(200).json(updated);
 }
 
 /**

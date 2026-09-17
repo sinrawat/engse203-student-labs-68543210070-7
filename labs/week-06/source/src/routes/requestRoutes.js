@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import * as controller from '../controllers/requestController.js';
 import { validateRequest } from '../middleware/validateRequest.js';
+import { updateRequestStatus } from '../controllers/requestController.js';
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.get('/', controller.listRequests);
 router.get('/:id', controller.getRequest);
 router.post('/', validateRequest, controller.createRequest);
 router.delete('/:id', controller.deleteRequest);
+router.put('/:id', updateRequestStatus);
 
 export default router;
