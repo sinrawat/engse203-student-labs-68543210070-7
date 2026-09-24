@@ -1,11 +1,11 @@
 {
   "week": "week-07",
   "title": "RESTful API, Validation & Error Handling",
-  "status": "ready",
+  "status": "submitted",
   "sourceOrigin": "migrated-repository",
   "originalRepoUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7",
   "originalCommit": "d590a76",
-  "pullRequestUrl": "",
+  "pullRequestUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/pull/7",
   "submissionTag": "lab-07-submission-v1",
   "testStatus": "pass",
   "notes": "เชื่อมต่อ React frontend กับ Express backend และมี API test evidence"
