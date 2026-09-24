@@ -16,7 +16,7 @@
     "verify": "node scripts/verify-repository.mjs",
     "verify:lab": "node scripts/verify-repository.mjs --week"
   },
-  "dependencies": {
+  "devDependencies": {
     "supertest": "^7.2.2"
   }
 }
