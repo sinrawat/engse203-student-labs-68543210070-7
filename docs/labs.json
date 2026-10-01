@@ -77,7 +77,7 @@
     "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-05/",
     "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-05/labs/week-05/source",
     "hasPublish": true,
-    "sourceEntries": 12
+    "sourceEntries": 10
   },
   {
     "week": "week-06",
@@ -110,5 +110,21 @@
     "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-07/labs/week-07/source",
     "hasPublish": true,
     "sourceEntries": 5
+  },
+  {
+    "week": "week-09",
+    "title": "sql-fundamentals",
+    "status": "ready",
+    "sourceOrigin": "migrated-repository",
+    "originalRepoUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7",
+    "originalCommit": "",
+    "pullRequestUrl": "",
+    "submissionTag": "lab-09-submission-v1",
+    "testStatus": "pass",
+    "notes": "SQLite database, SQL queries, relational data model and constraint evidence",
+    "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-09/",
+    "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-09/labs/week-09/source",
+    "hasPublish": false,
+    "sourceEntries": 6
   }
 ]
