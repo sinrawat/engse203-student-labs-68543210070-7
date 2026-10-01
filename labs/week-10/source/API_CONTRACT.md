@@ -1,10 +1,13 @@
 # API Contract — Campus Service Request API
 
 **เวอร์ชัน:** 2.0.0 · **Base URL:** `http://localhost:3001`
+
 **รูปแบบข้อมูล:** JSON (`Content-Type: application/json`)
 
 > **API Contract คืออะไร** — ข้อตกลงระหว่างคนทำ front-end กับคนทำ back-end
+>
 > ว่าจะคุยกันด้วย endpoint อะไร ส่งอะไรไป ได้อะไรกลับ
+>
 > มีไว้เพื่อให้สองฝั่ง**ทำงานคู่ขนานกันได้** โดยไม่ต้องรอกัน
 
 ---
@@ -22,6 +25,91 @@
 | `status` | string | `"pending"` · `"in-progress"` · `"completed"` | `"pending"` |
 
 **ค่าที่ยอมรับของ `requestType`** — `แจ้งซ่อม` · `บริการบัญชีผู้ใช้` · `ขอใช้อุปกรณ์` · `อื่น ๆ`
+
+---
+
+## Data Model
+
+### ตาราง `users`
+
+| field | ชนิด | คำอธิบาย |
+|---|---|---|
+| `id` | integer | Primary Key ของผู้แจ้ง |
+| `name` | string | ชื่อผู้แจ้ง |
+| `department` | string | แผนก/หน่วยงาน |
+| `email` | string | อีเมลของผู้แจ้ง |
+
+### ตาราง `requests`
+
+| field | ชนิด | คำอธิบาย |
+|---|---|---|
+| `id` | string | Primary Key ของคำร้อง เช่น `REQ-001` |
+| `requester_id` | integer | Foreign Key อ้างอิง `users.id` |
+| `request_type` | string | ประเภทคำร้อง |
+| `location` | string | สถานที่ |
+| `details` | string | รายละเอียด |
+| `priority` | string | `normal` หรือ `urgent` |
+| `status` | string | `pending`, `in-progress` หรือ `completed` |
+
+### Mapping ระหว่าง Database กับ API
+
+ในฐานข้อมูล ตาราง `requests` เก็บผู้แจ้งด้วย `requester_id` ซึ่งเป็น Foreign Key ที่อ้างอิง `users.id`
+
+```text
+requests.requester_id
+        ↓
+users.id
+        ↓ JOIN
+users.name
+        ↓
+API: requesterName
+```
+
+ดังนั้น API จะส่ง `requesterName` ให้ frontend แทน `requester_id`
+
+ตัวอย่างข้อมูลที่ API ส่งกลับ:
+
+```json
+{
+  "id": "REQ-001",
+  "requesterName": "สมชาย ใจดี",
+  "requestType": "แจ้งซ่อม",
+  "location": "ห้อง 301",
+  "details": "แอร์ไม่ทำงาน",
+  "priority": "urgent",
+  "status": "in-progress"
+}
+```
+
+### การสร้างผู้แจ้งใหม่ตอน POST
+
+เมื่อ `POST /api/requests` ได้ค่า `requesterName` ระบบจะดำเนินการดังนี้:
+
+1. Service ค้นหาชื่อผู้แจ้งในตาราง `users`
+2. ถ้ามีชื่ออยู่แล้ว → ใช้ `users.id` เดิม
+3. ถ้ายังไม่มีชื่อ → สร้าง user ใหม่ในตาราง `users`
+4. นำ `users.id` ที่ได้ไปเก็บใน `requests.requester_id`
+
+ตัวอย่าง:
+
+```text
+requesterName: "นักศึกษา ทดสอบ"
+        ↓
+ค้นหาใน users
+        ↓
+    ┌───┴───┐
+    ↓       ↓
+   พบ      ไม่พบ
+    ↓       ↓
+ใช้ id    สร้าง user ใหม่
+    └───┬───┘
+        ↓
+   requester_id
+        ↓
+     requests
+```
+
+การทำงานนี้เป็นหน้าที่ของ service เพื่อให้ frontend ยังคงส่ง `requesterName` ตาม API Contract โดยไม่ต้องรู้โครงสร้าง Foreign Key ภายในฐานข้อมูล
 
 ---
 

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync, existsSync } from 'node:fs';
+import { AppError } from '../middleware/errorHandler.js';
 
 let db;
 
@@ -120,6 +121,28 @@ function nextId() {
   return `REQ-${String(n).padStart(3, '0')}`;
 }
 
+function toAppError(err) {
+  const m = err.message ?? '';
+
+  if (m.includes('FOREIGN KEY')) {
+    return new AppError('อ้างถึงข้อมูลที่ไม่มีอยู่จริง', 400);
+  }
+
+  if (m.includes('CHECK')) {
+    return new AppError('ค่าที่ส่งมาไม่อยู่ในรายการที่กำหนด', 400);
+  }
+
+  if (m.includes('UNIQUE')) {
+    return new AppError('ข้อมูลนี้มีอยู่แล้วในระบบ', 409);
+  }
+
+  if (m.includes('NOT NULL')) {
+    return new AppError('กรุณากรอกข้อมูลให้ครบถ้วน', 400);
+  }
+
+  return err;
+}
+
 export function create(input) {
   /**
    * TODO W10-5 (CP29) · INSERT ลงฐานข้อมูล
@@ -129,18 +152,22 @@ export function create(input) {
    */
   const id = nextId();
 
-  db.prepare(
-    `INSERT INTO requests
-      (id, requester_id, request_type, location, details, priority)
-     VALUES (?, ?, ?, ?, ?, ?)`
-  ).run(
-    id,
-    resolveUserId(input.requesterName.trim()),
-    input.requestType,
-    input.location.trim(),
-    input.details.trim(),
-    input.priority ?? 'normal'
-  );
+  try {
+    db.prepare(
+      `INSERT INTO requests
+        (id, requester_id, request_type, location, details, priority)
+       VALUES (?, ?, ?, ?, ?, ?)`
+    ).run(
+      id,
+      resolveUserId(input.requesterName.trim()),
+      input.requestType,
+      input.location.trim(),
+      input.details.trim(),
+      input.priority ?? 'normal'
+    );
+  } catch (err) {
+    throw toAppError(err);
+  }
 
   return findById(id);
 }
