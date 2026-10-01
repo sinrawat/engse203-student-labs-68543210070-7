@@ -57,3 +57,6 @@ CREATE TABLE requests (
   created_at    TEXT NOT NULL DEFAULT (datetime('now','localtime')),
   FOREIGN KEY (requester_id) REFERENCES users(id)
 );
+
+CREATE INDEX IF NOT EXISTS idx_requests_status
+ON requests(status);

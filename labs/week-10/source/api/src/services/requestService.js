@@ -146,26 +146,40 @@ function toAppError(err) {
 export function create(input) {
   /**
    * TODO W10-5 (CP29) · INSERT ลงฐานข้อมูล
-   *   ⚠ frontend ส่ง requesterName (ชื่อ) มา แต่ตารางเก็บ requester_id (ตัวเลข)
-   *   → ต้องหา id ของชื่อนั้นก่อน ถ้ายังไม่มีในระบบให้สร้าง user ใหม่
-   *   นี่คือ "หน้าที่ของ service" ที่พูดถึงในบทที่ 9 ของสัปดาห์ที่แล้ว
+   *
+   * Challenge · ใช้ transaction
+   * - resolveUserId() และ INSERT request ต้องสำเร็จพร้อมกัน
+   * - ถ้าเกิด error ให้ ROLLBACK
    */
+
   const id = nextId();
 
   try {
+    db.exec('BEGIN');
+
+    const requesterId = resolveUserId(input.requesterName.trim());
+
     db.prepare(
       `INSERT INTO requests
         (id, requester_id, request_type, location, details, priority)
        VALUES (?, ?, ?, ?, ?, ?)`
     ).run(
       id,
-      resolveUserId(input.requesterName.trim()),
+      requesterId,
       input.requestType,
       input.location.trim(),
       input.details.trim(),
       input.priority ?? 'normal'
     );
+
+    db.exec('COMMIT');
   } catch (err) {
+    try {
+      db.exec('ROLLBACK');
+    } catch {
+      // transaction อาจไม่ได้เริ่มสำเร็จ
+    }
+
     throw toAppError(err);
   }
 
