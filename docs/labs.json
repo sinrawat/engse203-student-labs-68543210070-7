@@ -77,7 +77,7 @@
     "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-05/",
     "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-05/labs/week-05/source",
     "hasPublish": true,
-    "sourceEntries": 12
+    "sourceEntries": 10
   },
   {
     "week": "week-06",
@@ -93,7 +93,7 @@
     "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-06/",
     "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-06/labs/week-06/source",
     "hasPublish": false,
-    "sourceEntries": 9
+    "sourceEntries": 8
   },
   {
     "week": "week-07",
@@ -108,6 +108,36 @@
     "notes": "เชื่อมต่อ React frontend กับ Express backend และมี API test evidence",
     "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-07/",
     "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-07/labs/week-07/source",
+    "hasPublish": true,
+    "sourceEntries": 5
+  },
+  {
+    "week": "week-09",
+    "title": "sql-fundamentals",
+    "status": "submitted",
+    "sourceOrigin": "migrated-repository",
+    "originalRepoUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7",
+    "originalCommit": "bbbdb05",
+    "pullRequestUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/pull/8",
+    "submissionTag": "lab-09-submission-v1",
+    "testStatus": "pass",
+    "notes": "SQLite database, SQL queries, relational data model and constraint evidence",
+    "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-09/",
+    "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-09/labs/week-09/source",
+    "hasPublish": false,
+    "sourceEntries": 6
+  },
+  {
+    "week": "week-10",
+    "title": "SQLite Database Web Application",
+    "status": "submitted",
+    "sourceOrigin": "student-created",
+    "pullRequestUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/pull/9",
+    "submissionTag": "lab-10-submission-v1",
+    "testStatus": "pass",
+    "notes": "Web output using SQLite campus.db, Express API and React frontend",
+    "pageUrl": "https://sinrawat.github.io/engse203-student-labs-68543210070-7/labs/week-10/",
+    "sourceUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/tree/lab/week-10/labs/week-10/source",
     "hasPublish": true,
     "sourceEntries": 5
   }

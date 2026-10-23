@@ -1,0 +1,10 @@
+{
+  "week": "week-10",
+  "title": "SQLite Database Web Application",
+  "status": "submitted",
+  "sourceOrigin": "student-created",
+  "pullRequestUrl": "https://github.com/sinrawat/engse203-student-labs-68543210070-7/pull/9",
+  "submissionTag": "lab-10-submission-v1",
+  "testStatus": "pass",
+  "notes": "Web output using SQLite campus.db, Express API and React frontend"
+}
