@@ -1,0 +1,26 @@
+name: Week 12 Check
+# 1. กำหนด Event ที่ทำให้ Workflow ทำงาน: ทำงานทุกครั้งที่มีการ push โค้ด
+on: [push]
+jobs:
+  test:
+    # 2. เลือกระบบปฏิบัติการของเครื่องจำลอง (Ubuntu รุ่นล่าสุด)
+    runs-on: ubuntu-latest
+    # 3. กำหนด working-directory เริ่มต้น:
+    defaults:
+      run:
+        working-directory: labs/week-12/source
+    steps:
+      # ขั้นตอนที่ 1: ดึงโค้ดของเราจาก Git ลงมาที่เครื่องจำลอง
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      # ขั้นตอนที่ 2: ติดตั้ง Node.js เวอร์ชัน 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # ขั้นตอนที่ 3: ติดตั้ง dependencies ของทั้ง api และ frontend
+      - name: Install dependencies
+        run: npm install --prefix api && npm install --prefix frontend
+      # ขั้นตอนที่ 4: รัน Test ทั้งหมด
+      - name: Run tests
+        run: npm test
