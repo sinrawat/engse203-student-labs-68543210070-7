@@ -1,0 +1,12 @@
+{
+  "week": "week-10",
+  "title": "SQLite Database Web Application",
+  "status": "ready",
+  "sourceOrigin": "student-created",
+  "originalRepoUrl": "",
+  "originalCommit": "",
+  "pullRequestUrl": "",
+  "submissionTag": "lab-10-submission-v1",
+  "testStatus": "pass",
+  "notes": "Web output using SQLite campus.db, Express API and React frontend"
+}
