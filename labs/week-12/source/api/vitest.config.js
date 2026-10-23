@@ -13,13 +13,13 @@ export default defineConfig({
     execArgv: ['--disable-warning=ExperimentalWarning'],   // ไม่ต้องเตือนเรื่อง node:sqlite ทุกไฟล์
     include: ['tests/**/*.test.js'],
     env: {
-      DB_FILE: ':memory:',
+      DB_FILE: ':memory:',  //← ฐานข้อมูลในหน่วยความจำ ไม่แตะ campus.db
       NODE_ENV: 'test',
     },
     coverage: {
       provider: 'v8',
       include: ['src/**/*.js'],
-      exclude: ['src/server.js', 'src/middleware/logger.js'],
+      exclude: ['src/server.js'],
       reporter: ['text', 'html'],
     },
   },

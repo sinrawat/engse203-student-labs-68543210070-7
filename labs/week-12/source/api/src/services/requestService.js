@@ -97,6 +97,7 @@ export function findById(id) {
 
 /** สร้างรหัสคำร้องถัดไป เช่น REQ-006 */
 function nextId() {
+  // รหัสถัดไป = จำนวนคำร้องที่มีอยู่ + 1  (ปรับให้เรียบง่ายขึ้นในรุ่นนี้)
   const row = db.prepare(
     "SELECT id FROM requests WHERE id LIKE 'REQ-%' ORDER BY id DESC LIMIT 1"
   ).get();
